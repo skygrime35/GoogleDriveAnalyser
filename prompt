@@ -1,0 +1,35 @@
+In this new project, I want to create a new application.
+
+Functional specifications:
+Une application android qui me permet d'y connecté mon compte google drive et qui ensuite me permet d'analysé le stockage de mon googledrive (via des graphs/des arobrescences de fichier avec la taille de chaque dossier/chaque fichiers) --> en gros je veux savoir que tel dossier à tel endroit contient x GO
+
+Technical specifications:
+- Hexagonal architecture (mapped onto the conventions of whatever stack is chosen).
+- Everything in English (code/comments/docs/interface/...).
+- No monolithic files (~400 lines max per file, excluding generated/config files).
+- Fully maintainable through agentic development.
+- Unit tests at least on the domain/core layer, runnable without special hardware or an emulator. The test suite must pass before any commit.
+- Pinned runtime version and a dependency lockfile for reproducible builds (e.g. requirements.txt, package-lock.json, go.sum, Cargo.lock — whatever fits the stack).
+- A .gitignore adapted to the chosen stack; never commit secrets or build artifacts; provide a .env.example instead of real config.
+- The toolchain choice must be proven by an actual successful build in this environment, not assumed.
+
+Documentation specifications:
+- README.md for users to explain what the project is for, how to use it, how to build/compile it, how it works, ...
+- CLAUDE.md, GEMINI.md, AGENTS.md, an AGENTS folder and AGENTS/INDEX.md.
+- CLAUDE.md and GEMINI.md should only point to reading AGENTS.md.
+- AGENTS.md is the entry point for agentic documentation. It must contain the content of https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md as its base conventions. If that URL is unreachable, retrieve the equivalent content from a mirror of the same repository.
+- AGENTS.md must stay an entry point only: any documentation specific to a module, a function, etc. must live in its own MD file in the AGENTS folder and be referenced in AGENTS/INDEX.md. AGENTS.md must state that all detailed documentation is indexed in AGENTS/INDEX.md (e.g. documentation for xxx is in AGENTS/xxx.md). AGENTS/INDEX.md must contain at least one line per AGENTS/*.md file in the AGENTS folder.
+- The goal of all this documentation is to facilitate agentic development through tools like "claude code" or "antigravity cli".
+- AGENTS.md must instruct agents to keep all documentation (user and agentic) up to date in the same change as any code modification: touching a module requires updating its MD file, and updating INDEX.md whenever an MD file is added or removed.
+- Indicate the technical specifications in AGENTS.md.
+
+Workflow (follow this order strictly):
+1) Ask me as many clarifying questions as you need to refine the functional specifications. Do NOT write any code yet.
+2) Before proposing anything, inspect the actual execution environment: OS and distribution, CPU architecture, available package manager, language runtimes and versions already installed, and any build constraints specific to this environment. Then propose a technology stack that is verified to build and run in THIS environment — not a stack that only works on a standard desktop. Explicitly flag any environment-specific pitfalls (architecture mismatches in build tools, sandbox/filesystem limitations, where build artifacts must be placed to be usable) and how you will handle them. You may search the web for up-to-date docs. Wait for my validation of the environment analysis, the stack, and the specs.
+3) Implement the application. You may use as much time and as many agents as you want.
+4) Run as many linters as possible on the code you wrote, and fix every error you find. Repeat until no lint error remains.
+5) Run the test suite and make it pass (fix the code, not the tests, unless a test is genuinely wrong).
+6) Build the application, then place the runnable/installable artifact in whatever form is appropriate for this platform, where I can actually access and run it from outside the build environment. Tell me the exact path and how to launch or install it.
+7) Wait for my validation. If it's OK, go to the next step; otherwise return to step 3 to fix the problems, then redo steps 4, 5 and 6.
+8) Verify that all documentation (README, AGENTS.md, AGENTS/*, AGENTS/INDEX.md) is consistent and up to date; update it if not.
+9) Commit everything to a main branch and push to the new GitHub repository https://github.com/skygrime35/GoogleDriveAnalyser via SSH.
