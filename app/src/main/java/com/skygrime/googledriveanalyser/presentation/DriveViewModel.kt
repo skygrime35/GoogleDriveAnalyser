@@ -23,6 +23,7 @@ sealed interface SignInState {
     data object SignedOut : SignInState
     data object SigningIn : SignInState
     data class SignedIn(val email: String) : SignInState
+    data class Error(val message: String) : SignInState
 }
 
 sealed interface ScanState {

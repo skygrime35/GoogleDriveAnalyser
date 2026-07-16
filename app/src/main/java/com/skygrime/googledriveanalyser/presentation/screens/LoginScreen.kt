@@ -69,6 +69,24 @@ fun LoginScreen(
                 textAlign = TextAlign.Center
             )
 
+            if (signInState is SignInState.Error) {
+                Spacer(modifier = Modifier.height(16.dp))
+                Card(
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.errorContainer,
+                        contentColor = MaterialTheme.colorScheme.onErrorContainer
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = "Sign-in Error: ${signInState.message}",
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.padding(16.dp),
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+
             Spacer(modifier = Modifier.height(48.dp))
 
             if (signInState is SignInState.SigningIn) {

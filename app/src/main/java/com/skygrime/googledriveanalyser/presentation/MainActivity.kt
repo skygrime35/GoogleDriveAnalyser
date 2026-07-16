@@ -108,11 +108,11 @@ class MainActivity : ComponentActivity() {
                 viewModel.setSignInState(SignInState.SignedIn(account.email ?: "Unknown Account"))
                 viewModel.loadFromCache()
             } else {
-                viewModel.setSignInState(SignInState.SignedOut)
+                viewModel.setSignInState(SignInState.Error("Sign-in returned empty account"))
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            viewModel.setSignInState(SignInState.SignedOut)
+            viewModel.setSignInState(SignInState.Error(e.localizedMessage ?: e.toString()))
         }
     }
 
